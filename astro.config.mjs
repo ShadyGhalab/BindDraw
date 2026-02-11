@@ -3,6 +3,5 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://shadyghalab.github.io',
-  base: '/BindDraw/',
+  site: 'https://blinddraw.ink',
 });
