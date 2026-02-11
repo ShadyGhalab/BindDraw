@@ -1,0 +1,149 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Privacy Policy — Invisible Ink" description="Privacy Policy for the Invisible Ink drawing app.">
+
+  <section class="legal-page">
+    <div class="container container--narrow">
+      <div class="reveal">
+        <h1>Privacy Policy</h1>
+        <p class="legal-date">Last updated: February 11, 2026</p>
+      </div>
+
+      <div class="legal-content reveal" style="transition-delay: 0.1s;">
+
+        <h2>Introduction</h2>
+        <p>Invisible Ink ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use the Invisible Ink mobile application ("App").</p>
+
+        <h2>Information We Collect</h2>
+
+        <h3>Information You Provide</h3>
+        <ul>
+          <li><strong>Drawings and Artwork:</strong> Drawings you create within the App are stored locally on your device. If you enable iCloud sync, your drawings are also stored in your personal iCloud account.</li>
+          <li><strong>Feedback:</strong> If you contact us via email, we receive your email address and message content.</li>
+        </ul>
+
+        <h3>Automatically Collected Information</h3>
+        <ul>
+          <li><strong>Crash Data:</strong> We collect crash logs and performance data to improve app stability. This data does not include personally identifiable information.</li>
+          <li><strong>Analytics:</strong> We use Firebase Analytics and AppsFlyer to understand app usage patterns, such as which features are most popular. This data is anonymized and aggregated.</li>
+          <li><strong>Device Information:</strong> Basic device information (device type, OS version) may be collected for analytics and compatibility purposes.</li>
+        </ul>
+
+        <h3>Advertising</h3>
+        <p>For non-Premium users, the App displays advertisements through Google AdMob. AdMob may collect device identifiers to serve relevant ads. Premium users enjoy an ad-free experience.</p>
+
+        <h2>How We Use Your Information</h2>
+        <ul>
+          <li>To provide and maintain the App's functionality</li>
+          <li>To sync your drawings across your devices via iCloud</li>
+          <li>To improve the App through crash reporting and analytics</li>
+          <li>To display advertisements (non-Premium users only)</li>
+          <li>To respond to your feedback and support requests</li>
+        </ul>
+
+        <h2>Data Storage and Security</h2>
+        <p>Your drawings are stored locally on your device and optionally in your personal iCloud account. We do not store your drawings on our servers. We implement appropriate security measures to protect any data we process.</p>
+
+        <h2>Third-Party Services</h2>
+        <p>The App uses the following third-party services:</p>
+        <ul>
+          <li><strong>Apple iCloud:</strong> For syncing drawings across your devices (optional)</li>
+          <li><strong>Apple Game Center:</strong> For achievements and leaderboards (optional)</li>
+          <li><strong>Google AdMob:</strong> For displaying advertisements (non-Premium users)</li>
+          <li><strong>Firebase Analytics:</strong> For anonymous usage analytics</li>
+          <li><strong>AppsFlyer:</strong> For attribution analytics</li>
+        </ul>
+        <p>Each of these services has its own privacy policy governing their data practices.</p>
+
+        <h2>Tracking</h2>
+        <p>The App does not track you across other companies' apps or websites. We have opted out of Apple's App Tracking Transparency framework as we do not perform cross-app tracking.</p>
+
+        <h2>Children's Privacy</h2>
+        <p>Invisible Ink is suitable for all ages. We do not knowingly collect personal information from children under 13. The App does not require account creation or personal information to use.</p>
+
+        <h2>Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+          <li>Delete your drawings from the App and iCloud at any time</li>
+          <li>Opt out of personalized advertising through your device settings</li>
+          <li>Request information about data we may have collected</li>
+          <li>Contact us to exercise any of your data protection rights</li>
+        </ul>
+
+        <h2>Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by updating the "Last updated" date at the top of this page.</p>
+
+        <h2>Contact Us</h2>
+        <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+        <p><a href="mailto:feedback@invisibleink.app">feedback@invisibleink.app</a></p>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding: 10rem 0 4rem;
+  }
+
+  .legal-page h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-date {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 3rem;
+  }
+
+  .legal-content h2 {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-top: 1.5rem;
+    border-top: var(--border-subtle);
+  }
+
+  .legal-content h2:first-child {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .legal-content h3 {
+    font-size: 1.15rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+  }
+
+  .legal-content p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  .legal-content ul {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .legal-content li {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+
+  .legal-content a {
+    color: var(--accent-purple);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .legal-content a:hover {
+    color: var(--accent-pink);
+  }
+</style>
