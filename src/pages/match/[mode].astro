@@ -11,7 +11,6 @@ export function getStaticPaths() {
 }
 
 const mode = Astro.params.mode ?? 'copycat';
-const code = Astro.url.searchParams.get('code')?.replace(/\D/g, '').slice(0, 4) ?? '';
 
 const modeNames: Record<string, string> = {
   guess: 'Guess What I Drew',
@@ -22,7 +21,7 @@ const modeNames: Record<string, string> = {
 
 const modeName = modeNames[mode] ?? 'Private Match';
 const appStoreURL = 'https://apps.apple.com/app/id6758377109';
-const appURL = `invisibleink://match/${mode}?code=${code}`;
+const fallbackAppURL = `invisibleink://match/${mode}`;
 ---
 
 <BaseLayout title={`Join ${modeName} — Invisible Ink`}>
@@ -32,18 +31,38 @@ const appURL = `invisibleink://match/${mode}?code=${code}`;
       <img src="/images/app-icon.png" alt="" class="match-invite__icon" />
       <p class="match-invite__eyebrow">Private Match</p>
       <h1>Join {modeName}</h1>
-      {code && <p class="match-invite__code">Code <strong>{code}</strong></p>}
+      <p class="match-invite__code" id="match-code" hidden>Code <strong></strong></p>
       <p class="match-invite__body">
         Open Invisible Ink to join this Game Center match. If you do not have the app yet, install it from the App Store first.
       </p>
       <div class="match-invite__actions">
-        <a href={appURL} class="match-invite__button match-invite__button--primary">Open Invisible Ink</a>
+        <a href={fallbackAppURL} id="open-app-link" class="match-invite__button match-invite__button--primary">Open Invisible Ink</a>
         <a href={appStoreURL} class="match-invite__button match-invite__button--secondary">Get the App</a>
       </div>
     </div>
   </section>
 
-  <script define:vars={{ appURL, appStoreURL }}>
+  <script define:vars={{ mode, appStoreURL }}>
+    const code = new URLSearchParams(window.location.search)
+      .get('code')
+      ?.replace(/\D/g, '')
+      .slice(0, 4) ?? '';
+    const appURL = `invisibleink://match/${mode}${code ? `?code=${code}` : ''}`;
+    const openAppLink = document.getElementById('open-app-link');
+    const codeElement = document.getElementById('match-code');
+
+    if (openAppLink) {
+      openAppLink.setAttribute('href', appURL);
+    }
+
+    if (code && codeElement) {
+      const strong = codeElement.querySelector('strong');
+      if (strong) {
+        strong.textContent = code;
+      }
+      codeElement.removeAttribute('hidden');
+    }
+
     window.setTimeout(() => {
       window.location.href = appURL;
     }, 300);
