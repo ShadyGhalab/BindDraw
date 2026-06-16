@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { mode: 'guess' } },
+    { params: { mode: 'copycat' } },
+    { params: { mode: 'collab' } },
+    { params: { mode: 'blindrelay' } },
+  ];
+}
+
+const mode = Astro.params.mode ?? 'copycat';
+const code = Astro.url.searchParams.get('code')?.replace(/\D/g, '').slice(0, 4) ?? '';
+
+const modeNames: Record<string, string> = {
+  guess: 'Guess What I Drew',
+  copycat: 'Copycat Duel',
+  collab: 'Draw Together',
+  blindrelay: 'Blind Relay',
+};
+
+const modeName = modeNames[mode] ?? 'Private Match';
+const appStoreURL = 'https://apps.apple.com/app/id6758377109';
+const appURL = `invisibleink://match/${mode}?code=${code}`;
+---
+
+<BaseLayout title={`Join ${modeName} — Invisible Ink`}>
+  <section class="match-invite">
+    <div class="match-invite__glow" aria-hidden="true"></div>
+    <div class="match-invite__card">
+      <img src="/images/app-icon.png" alt="" class="match-invite__icon" />
+      <p class="match-invite__eyebrow">Private Match</p>
+      <h1>Join {modeName}</h1>
+      {code && <p class="match-invite__code">Code <strong>{code}</strong></p>}
+      <p class="match-invite__body">
+        Open Invisible Ink to join this Game Center match. If you do not have the app yet, install it from the App Store first.
+      </p>
+      <div class="match-invite__actions">
+        <a href={appURL} class="match-invite__button match-invite__button--primary">Open Invisible Ink</a>
+        <a href={appStoreURL} class="match-invite__button match-invite__button--secondary">Get the App</a>
+      </div>
+    </div>
+  </section>
+
+  <script define:vars={{ appURL, appStoreURL }}>
+    window.setTimeout(() => {
+      window.location.href = appURL;
+    }, 300);
+
+    window.setTimeout(() => {
+      if (!document.hidden) {
+        window.location.href = appStoreURL;
+      }
+    }, 1800);
+  </script>
+</BaseLayout>
+
+<style>
+  .match-invite {
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: 96px 20px 48px;
+    background:
+      radial-gradient(circle at 50% 20%, rgba(168, 85, 247, 0.28), transparent 34rem),
+      radial-gradient(circle at 70% 70%, rgba(255, 107, 157, 0.18), transparent 28rem),
+      #05050a;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .match-invite__glow {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.45), rgba(255, 107, 157, 0.35));
+    filter: blur(120px);
+    opacity: 0.55;
+  }
+
+  .match-invite__card {
+    position: relative;
+    width: min(100%, 480px);
+    text-align: center;
+    padding: 36px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 28px;
+    background: rgba(17, 17, 28, 0.72);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(24px);
+  }
+
+  .match-invite__icon {
+    width: 76px;
+    height: 76px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+    box-shadow: 0 18px 40px rgba(168, 85, 247, 0.32);
+  }
+
+  .match-invite__eyebrow {
+    margin: 0 0 10px;
+    color: #d946ef;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+
+  .match-invite h1 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2.1rem, 8vw, 3.4rem);
+    line-height: 1.02;
+  }
+
+  .match-invite__code {
+    margin: 22px auto 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1rem;
+  }
+
+  .match-invite__code strong {
+    display: inline-flex;
+    margin-left: 8px;
+    color: #fff;
+    font-size: 1.5rem;
+    letter-spacing: 0.12em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .match-invite__body {
+    margin: 20px auto 0;
+    max-width: 34ch;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.6;
+  }
+
+  .match-invite__actions {
+    display: grid;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .match-invite__button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 52px;
+    border-radius: 999px;
+    padding: 0 22px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .match-invite__button--primary {
+    color: #fff;
+    background: linear-gradient(135deg, #d946ef, #ff477e);
+  }
+
+  .match-invite__button--secondary {
+    color: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+</style>
