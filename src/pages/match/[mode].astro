@@ -21,6 +21,7 @@ const modeNames: Record<string, string> = {
 
 const modeName = modeNames[mode] ?? 'Private Match';
 const appStoreURL = 'https://apps.apple.com/app/id6758377109';
+const appsFlyerOneLinkURL = import.meta.env.PUBLIC_APPSFLYER_ONELINK_URL ?? '';
 const fallbackAppURL = `invisibleink://match/${mode}`;
 ---
 
@@ -37,22 +38,46 @@ const fallbackAppURL = `invisibleink://match/${mode}`;
       </p>
       <div class="match-invite__actions">
         <a href={fallbackAppURL} id="open-app-link" class="match-invite__button match-invite__button--primary">Open Invisible Ink</a>
-        <a href={appStoreURL} class="match-invite__button match-invite__button--secondary">Get the App</a>
+        <a href={appStoreURL} id="get-app-link" class="match-invite__button match-invite__button--secondary">Get the App</a>
       </div>
     </div>
   </section>
 
-  <script define:vars={{ mode, appStoreURL }}>
+  <script define:vars={{ mode, appStoreURL, appsFlyerOneLinkURL }}>
     const code = new URLSearchParams(window.location.search)
       .get('code')
       ?.replace(/\D/g, '')
       .slice(0, 4) ?? '';
     const appURL = `invisibleink://match/${mode}${code ? `?code=${code}` : ''}`;
+    const webURL = `${window.location.origin}/match/${mode}${code ? `?code=${code}` : ''}`;
     const openAppLink = document.getElementById('open-app-link');
+    const getAppLink = document.getElementById('get-app-link');
     const codeElement = document.getElementById('match-code');
+
+    function installURL() {
+      if (!appsFlyerOneLinkURL) {
+        return appStoreURL;
+      }
+
+      const url = new URL(appsFlyerOneLinkURL);
+      url.searchParams.set('deep_link_value', 'private_match');
+      url.searchParams.set('deep_link_sub1', mode);
+      url.searchParams.set('deep_link_sub2', code);
+      url.searchParams.set('af_sub1', mode);
+      url.searchParams.set('af_sub2', code);
+      url.searchParams.set('af_dp', appURL);
+      url.searchParams.set('af_web_dp', webURL);
+      return url.toString();
+    }
+
+    const deferredInstallURL = installURL();
 
     if (openAppLink) {
       openAppLink.setAttribute('href', appURL);
+    }
+
+    if (getAppLink) {
+      getAppLink.setAttribute('href', deferredInstallURL);
     }
 
     if (code && codeElement) {
@@ -69,7 +94,7 @@ const fallbackAppURL = `invisibleink://match/${mode}`;
 
     window.setTimeout(() => {
       if (!document.hidden) {
-        window.location.href = appStoreURL;
+        window.location.href = deferredInstallURL;
       }
     }, 1800);
   </script>
