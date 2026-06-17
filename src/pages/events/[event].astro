@@ -1,0 +1,222 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { event: 'tournament' } },
+    { params: { event: 'copycat' } },
+    { params: { event: 'turn-based-guess' } },
+    { params: { event: 'daily-challenge' } },
+  ];
+}
+
+const eventSlug = Astro.params.event ?? 'tournament';
+
+const eventDetails: Record<string, { title: string; eyebrow: string; body: string; accent: string }> = {
+  tournament: {
+    title: 'Creative Canvas Cup',
+    eyebrow: 'Weekly Tournament',
+    body: 'Open Invisible Ink to join the current weekly drawing tournament, submit your best sketch, and climb the leaderboard.',
+    accent: '#fbbf24',
+  },
+  copycat: {
+    title: 'Copycat Duel',
+    eyebrow: 'Live Event',
+    body: 'Open Invisible Ink and compete head-to-head to recreate a reference image from memory.',
+    accent: '#ff477e',
+  },
+  'turn-based-guess': {
+    title: 'Turn-Based Guess',
+    eyebrow: 'Async Challenge',
+    body: 'Create a drawing challenge now and let a friend guess it later through Game Center.',
+    accent: '#60a5fa',
+  },
+  'daily-challenge': {
+    title: 'Daily Challenge',
+    eyebrow: 'Daily Prompt',
+    body: 'Open Invisible Ink and complete today’s prompt to keep your creative streak alive.',
+    accent: '#fb923c',
+  },
+};
+
+const details = eventDetails[eventSlug] ?? eventDetails.tournament;
+const appStoreURL = 'https://apps.apple.com/app/id6758377109';
+const appsFlyerOneLinkURL = import.meta.env.PUBLIC_APPSFLYER_ONELINK_URL ?? '';
+const fallbackAppURL = `invisibleink://events/${eventSlug}`;
+---
+
+<BaseLayout title={`${details.title} — Invisible Ink`} description={details.body} image="/images/events/creative-canvas-cup-card.jpg">
+  <section class="event-invite" style={`--event-accent: ${details.accent}`}>
+    <div class="event-invite__glow" aria-hidden="true"></div>
+    <div class="event-invite__card">
+      <img src="/images/app-icon.png" alt="" class="event-invite__icon" />
+      <p class="event-invite__eyebrow">{details.eyebrow}</p>
+      <h1>{details.title}</h1>
+      <p class="event-invite__body">{details.body}</p>
+      <div class="event-invite__actions">
+        <a href={fallbackAppURL} id="open-app-link" class="event-invite__button event-invite__button--primary">Open Invisible Ink</a>
+        <a href={appStoreURL} id="get-app-link" class="event-invite__button event-invite__button--secondary">Get the App</a>
+      </div>
+    </div>
+  </section>
+
+  <script define:vars={{ eventSlug, appStoreURL, appsFlyerOneLinkURL }}>
+    const params = new URLSearchParams(window.location.search);
+    const eventID = params.get('event_id') ?? '';
+    const tournamentID = params.get('tournament_id') ?? '';
+    const appURL = new URL(`invisibleink://events/${eventSlug}`);
+    const webURL = new URL(`${window.location.origin}/events/${eventSlug}/`);
+
+    if (eventID) {
+      appURL.searchParams.set('event_id', eventID);
+      webURL.searchParams.set('event_id', eventID);
+    }
+    if (tournamentID) {
+      appURL.searchParams.set('tournament_id', tournamentID);
+      webURL.searchParams.set('tournament_id', tournamentID);
+    }
+    appURL.searchParams.set('source', 'app_store_event');
+    webURL.searchParams.set('source', 'app_store_event');
+
+    const openAppLink = document.getElementById('open-app-link');
+    const getAppLink = document.getElementById('get-app-link');
+
+    function installURL() {
+      if (!appsFlyerOneLinkURL) {
+        return appStoreURL;
+      }
+
+      const url = new URL(appsFlyerOneLinkURL);
+      url.searchParams.set('deep_link_value', 'app_store_event');
+      url.searchParams.set('deep_link_sub1', eventSlug);
+      if (eventID) {
+        url.searchParams.set('deep_link_sub2', eventID);
+      }
+      if (tournamentID) {
+        url.searchParams.set('deep_link_sub3', tournamentID);
+      }
+      url.searchParams.set('af_sub1', eventSlug);
+      url.searchParams.set('af_sub2', eventID);
+      url.searchParams.set('af_sub3', tournamentID);
+      url.searchParams.set('af_dp', appURL.toString());
+      url.searchParams.set('af_web_dp', webURL.toString());
+      return url.toString();
+    }
+
+    const deferredInstallURL = installURL();
+
+    if (openAppLink) {
+      openAppLink.setAttribute('href', appURL.toString());
+    }
+
+    if (getAppLink) {
+      getAppLink.setAttribute('href', deferredInstallURL);
+    }
+
+    window.setTimeout(() => {
+      window.location.href = appURL.toString();
+    }, 300);
+
+    window.setTimeout(() => {
+      if (!document.hidden) {
+        window.location.href = deferredInstallURL;
+      }
+    }, 1800);
+  </script>
+</BaseLayout>
+
+<style>
+  .event-invite {
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: 96px 20px 48px;
+    background:
+      radial-gradient(circle at 50% 18%, color-mix(in srgb, var(--event-accent) 32%, transparent), transparent 33rem),
+      radial-gradient(circle at 78% 72%, rgba(168, 85, 247, 0.2), transparent 30rem),
+      #05050a;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .event-invite__glow {
+    position: absolute;
+    width: 460px;
+    height: 460px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--event-accent), #d946ef);
+    filter: blur(130px);
+    opacity: 0.5;
+  }
+
+  .event-invite__card {
+    position: relative;
+    width: min(100%, 520px);
+    text-align: center;
+    padding: 40px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 30px;
+    background: rgba(17, 17, 28, 0.74);
+    box-shadow: 0 30px 88px rgba(0, 0, 0, 0.44);
+    backdrop-filter: blur(24px);
+  }
+
+  .event-invite__icon {
+    width: 78px;
+    height: 78px;
+    border-radius: 18px;
+    margin-bottom: 22px;
+    box-shadow: 0 18px 42px color-mix(in srgb, var(--event-accent) 36%, transparent);
+  }
+
+  .event-invite__eyebrow {
+    margin: 0 0 10px;
+    color: var(--event-accent);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+
+  .event-invite h1 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2.2rem, 8vw, 3.7rem);
+    line-height: 1.02;
+  }
+
+  .event-invite__body {
+    margin: 22px auto 0;
+    max-width: 37ch;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.6;
+  }
+
+  .event-invite__actions {
+    display: grid;
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .event-invite__button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 52px;
+    border-radius: 999px;
+    padding: 0 22px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .event-invite__button--primary {
+    color: #fff;
+    background: linear-gradient(135deg, var(--event-accent), #ff477e);
+  }
+
+  .event-invite__button--secondary {
+    color: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+</style>

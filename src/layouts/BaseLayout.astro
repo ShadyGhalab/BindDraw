@@ -2,10 +2,12 @@
 interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
 
-const { title, description = "Draw in the dark. Reveal the magic. A creative drawing app with invisible ink, magical reveal effects, and fun party games." } = Astro.props;
+const { title, description = "Draw in the dark. Reveal the magic. A creative drawing app with invisible ink, magical reveal effects, and fun party games.", image } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL;
+const previewImage = image ?? `${baseUrl}images/hero.png`;
 ---
 
 <!doctype html>
@@ -20,7 +22,7 @@ const baseUrl = import.meta.env.BASE_URL;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content={`${baseUrl}images/hero.png`} />
+    <meta property="og:image" content={previewImage} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

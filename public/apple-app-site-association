@@ -5,7 +5,8 @@
       {
         "appID": "EZKTHB6PL9.TendonLife.Invisible-Ink",
         "paths": [
-          "/match/*"
+          "/match/*",
+          "/events/*"
         ]
       }
     ]
