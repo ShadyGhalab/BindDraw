@@ -16,7 +16,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p>Invisible Ink is a blind drawing and party game. You can draw without creating an account. This policy explains what data the app and its service providers process, why it is used, and the choices available to you.</p>
 
         <h2>Drawings and Game Content</h2>
-        <p>Drawings are stored on your device. If you enable iCloud features, Apple may sync eligible app data through your iCloud account. Online play, Game Center, and SharePlay transmit the content and game state needed to connect participants and run the session. Invisible Ink does not operate a server that keeps a permanent copy of your multiplayer drawings.</p>
+        <p>Most drawings are stored on your device. If you enable iCloud features, Apple may sync eligible app data through your iCloud account. Real-time online play, Game Center matches, and SharePlay transmit the content and game state needed to connect participants and run the session; Invisible Ink does not retain a permanent copy of those real-time session drawings.</p>
+        <p>Tournament submissions are retained in the app's public CloudKit database so Invisible Ink can provide tournament participation, voting, leaderboards, results, and rewards. A submission may include a drawing thumbnail, score, submission date, tournament and round identifiers, and your Game Center player ID and display name. Tournament entries are available to other app users through tournament features and are accessible to the developer through the app's CloudKit container.</p>
 
         <h2>Analytics and Diagnostics</h2>
         <p>When Analytics Collection is enabled in Settings, Invisible Ink uses Firebase Analytics, Firebase Crashlytics, and AppsFlyer to understand app usage, stability, acquisition, and feature performance. Depending on the service and your permissions, this may include:</p>
@@ -42,7 +43,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p>If you allow notifications, Apple provides the app with a push-notification token. When optional analytics is enabled, AppsFlyer may use that token to measure whether an installation remains active. Notification permission can be changed at any time in iOS Settings.</p>
 
         <h2>Apple Services</h2>
-        <p>Features such as iCloud, Game Center, SharePlay, and StoreKit are provided by Apple and are subject to <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>.</p>
+        <p>Features such as iCloud, Game Center, SharePlay, and StoreKit use services provided by Apple and are also subject to <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>. Invisible Ink uses an app-specific CloudKit container to retain the tournament information described above.</p>
 
         <h2>Service Providers</h2>
         <ul>
@@ -52,7 +53,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </ul>
 
         <h2>Retention and Deletion</h2>
-        <p>Local drawings and preferences remain until you delete them or remove the app. Synced iCloud data can be managed through your Apple account. Service providers retain analytics, advertising, and diagnostic data under their own retention settings and policies. Because no Invisible Ink account is required, deleting the app removes locally stored app data but does not automatically erase data already processed by a service provider.</p>
+        <p>Local drawings and preferences remain until you delete them or remove the app. Synced private iCloud data can be managed through your Apple account. Tournament records remain in the public CloudKit database as needed to operate and preserve tournament results, leaderboards, voting, and rewards. You may request access to or deletion of your tournament submission data by contacting <a href="mailto:privacy@blinddraw.ink">privacy@blinddraw.ink</a>.</p>
+        <p>Service providers retain analytics, advertising, and diagnostic data under their own retention settings and policies. Because no Invisible Ink account is required, deleting the app removes locally stored app data but does not automatically erase tournament records or data already processed by Apple or another service provider.</p>
 
         <h2>Children's Privacy</h2>
         <p>Invisible Ink is a general-audience app and is not directed to children under 13. We do not knowingly ask children to provide personal contact information or create an Invisible Ink account. Parents and guardians should supervise a child's device, advertising, Game Center, SharePlay, and privacy settings.</p>
@@ -61,7 +63,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p>We may update this policy when the app, its providers, or legal requirements change. The latest version and update date will be posted on this page.</p>
 
         <h2>Contact Us</h2>
-        <p>Questions or privacy requests can be sent to <a href="mailto:support@blinddraw.ink">support@blinddraw.ink</a>.</p>
+        <p>Questions or privacy requests can be sent to <a href="mailto:privacy@blinddraw.ink">privacy@blinddraw.ink</a>.</p>
 
       </div>
     </div>
