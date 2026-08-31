@@ -5,8 +5,43 @@
       {
         "appID": "EZKTHB6PL9.TendonLife.Invisible-Ink",
         "paths": [
+          "/events/*",
           "/match/*",
-          "/events/*"
+          "/daily-challenge/*",
+          "/gallery/*",
+          "/free-draw/*",
+          "/draw/*",
+          "/paywall/*"
+        ],
+        "components": [
+          {
+            "/": "/events/*",
+            "comment": "App Store in-app event links"
+          },
+          {
+            "/": "/match/*",
+            "comment": "Private match invite links"
+          },
+          {
+            "/": "/daily-challenge/*",
+            "comment": "Daily challenge links"
+          },
+          {
+            "/": "/gallery/*",
+            "comment": "Gallery links"
+          },
+          {
+            "/": "/free-draw/*",
+            "comment": "Free draw links"
+          },
+          {
+            "/": "/draw/*",
+            "comment": "Drawing links"
+          },
+          {
+            "/": "/paywall/*",
+            "comment": "Premium links"
+          }
         ]
       }
     ]
