@@ -26,7 +26,7 @@ const modeNames: Record<string, string> = {
 
 const modeName = modeNames[mode] ?? 'Private Match';
 const appStoreURL = 'https://apps.apple.com/app/id6758377109';
-const appsFlyerOneLinkURL = import.meta.env.PUBLIC_APPSFLYER_ONELINK_URL ?? 'https://blinddraw.onelink.me/hJLi/private-match';
+const appsFlyerOneLinkURL = import.meta.env.PUBLIC_APPSFLYER_ONELINK_URL?.trim() || 'https://blinddraw.onelink.me/hJLi/private-match';
 const fallbackAppURL = `invisibleink://match/${mode}`;
 ---
 

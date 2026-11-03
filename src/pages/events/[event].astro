@@ -49,7 +49,7 @@ const eventDetails: Record<string, { title: string; eyebrow: string; body: strin
 
 const details = eventDetails[eventSlug] ?? eventDetails.tournament;
 const appStoreURL = 'https://apps.apple.com/app/id6758377109';
-const appsFlyerOneLinkURL = import.meta.env.PUBLIC_APPSFLYER_ONELINK_URL ?? 'https://blinddraw.onelink.me/hJLi/private-match';
+const appsFlyerOneLinkURL = import.meta.env.PUBLIC_APPSFLYER_ONELINK_URL?.trim() || 'https://blinddraw.onelink.me/hJLi/private-match';
 const fallbackAppURL = `invisibleink://events/${eventSlug}`;
 ---
 

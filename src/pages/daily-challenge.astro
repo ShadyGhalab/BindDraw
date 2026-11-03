@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getImage } from 'astro:assets';
 import appIcon from '../assets/app-icon.png';
 const smallIcon = await getImage({src: appIcon, width: 176, format: 'webp'});
-const oneLink = import.meta.env.PUBLIC_APPSFLYER_ONELINK_URL ?? 'https://blinddraw.onelink.me/hJLi/private-match';
+const oneLink = import.meta.env.PUBLIC_APPSFLYER_ONELINK_URL?.trim() || 'https://blinddraw.onelink.me/hJLi/private-match';
 const appStoreURL = 'https://apps.apple.com/app/id6758377109';
 ---
 <BaseLayout title="Your Daily Drawing Challenge — Invisible Ink" description="Play the same daily drawing challenge as your friend in Invisible Ink on iPhone and iPad.">
