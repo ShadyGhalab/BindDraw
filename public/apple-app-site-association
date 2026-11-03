@@ -11,7 +11,9 @@
           "/gallery/*",
           "/free-draw/*",
           "/draw/*",
-          "/paywall/*"
+          "/paywall/*",
+          "/daily-challenge",
+          "/daily-challenge/"
         ],
         "components": [
           {
@@ -41,6 +43,14 @@
           {
             "/": "/paywall/*",
             "comment": "Premium links"
+          },
+          {
+            "/": "/daily-challenge",
+            "comment": "Shared daily drawing challenges"
+          },
+          {
+            "/": "/daily-challenge/",
+            "comment": "Shared daily drawing challenges"
           }
         ]
       }

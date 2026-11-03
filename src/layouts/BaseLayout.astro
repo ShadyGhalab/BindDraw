@@ -1,13 +1,17 @@
 ---
+import { getImage } from 'astro:assets';
+import appIcon from '../assets/app-icon.png';
+const smallIcon = await getImage({src: appIcon, width: 96, format: 'png'});
 interface Props {
   title: string;
   description?: string;
   image?: string;
 }
 
-const { title, description = "Draw in the dark. Reveal the magic. A creative drawing app with invisible ink, magical reveal effects, and fun party games.", image } = Astro.props;
+const { title, description = "Drawing games for iPhone and iPad. Play party games with friends, explore seven arcade games, take on daily challenges, and create surprise reveals.", image } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL;
-const previewImage = image ?? `${baseUrl}images/hero.png`;
+const previewImage = new URL(image ?? `${baseUrl}images/app-icon.png`, Astro.site).href;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <!doctype html>
@@ -16,6 +20,9 @@ const previewImage = image ?? `${baseUrl}images/hero.png`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="apple-itunes-app" content="app-id=6758377109" />
+    <meta property="og:url" content={canonicalURL} />
     <meta name="theme-color" content="#06060c" />
 
     <!-- Open Graph -->
@@ -29,7 +36,7 @@ const previewImage = image ?? `${baseUrl}images/hero.png`;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-    <link rel="icon" type="image/png" href={`${baseUrl}images/app-icon.png`} />
+    <link rel="icon" type="image/png" href={smallIcon.src} />
     <title>{title}</title>
   </head>
   <body>
@@ -41,7 +48,7 @@ const previewImage = image ?? `${baseUrl}images/hero.png`;
       <nav class="navbar" id="navbar">
         <div class="container navbar__inner">
           <a href={`${baseUrl}`} class="navbar__logo">
-            <img src={`${baseUrl}images/app-icon.png`} alt="" width="32" height="32" class="navbar__icon" />
+            <img src={smallIcon.src} alt="" width="32" height="32" class="navbar__icon" />
             Invisible Ink
           </a>
           <button class="navbar__toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -73,7 +80,7 @@ const previewImage = image ?? `${baseUrl}images/hero.png`;
           <div class="footer__grid">
             <div class="footer__brand">
               <span class="footer__logo-text">Invisible Ink</span>
-              <p class="footer__tagline">Draw in the dark. Reveal the magic.</p>
+              <p class="footer__tagline">Party, Arcade &amp; Daily Play.</p>
               <a href="https://apps.apple.com/app/id6758377109" class="app-store-badge" target="_blank" rel="noopener">
                 <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store" />
               </a>

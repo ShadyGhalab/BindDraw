@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getImage } from 'astro:assets';
+import appIcon from '../../assets/app-icon.png';
+const smallIcon = await getImage({src: appIcon, width: 176, format: 'webp'});
 
 export function getStaticPaths() {
   return [
@@ -7,6 +10,7 @@ export function getStaticPaths() {
     { params: { mode: 'copycat' } },
     { params: { mode: 'collab' } },
     { params: { mode: 'blindrelay' } },
+    { params: { mode: 'speeddraw' } },
   ];
 }
 
@@ -17,11 +21,12 @@ const modeNames: Record<string, string> = {
   copycat: 'Copycat Duel',
   collab: 'Draw Together',
   blindrelay: 'Blind Relay',
+  speeddraw: 'Speed Draw',
 };
 
 const modeName = modeNames[mode] ?? 'Private Match';
 const appStoreURL = 'https://apps.apple.com/app/id6758377109';
-const appsFlyerOneLinkURL = import.meta.env.PUBLIC_APPSFLYER_ONELINK_URL ?? '';
+const appsFlyerOneLinkURL = import.meta.env.PUBLIC_APPSFLYER_ONELINK_URL ?? 'https://blinddraw.onelink.me/hJLi/private-match';
 const fallbackAppURL = `invisibleink://match/${mode}`;
 ---
 
@@ -29,12 +34,13 @@ const fallbackAppURL = `invisibleink://match/${mode}`;
   <section class="match-invite">
     <div class="match-invite__glow" aria-hidden="true"></div>
     <div class="match-invite__card">
-      <img src="/images/app-icon.png" alt="" class="match-invite__icon" />
+      <img src={smallIcon.src} alt="" class="match-invite__icon" />
       <p class="match-invite__eyebrow">Private Match</p>
       <h1>Join {modeName}</h1>
       <p class="match-invite__code" id="match-code" hidden>Code <strong></strong></p>
+      <p id="invite-error" role="status" hidden>This invitation needs a valid four-digit room code. Ask your friend to share the link again.</p>
       <p class="match-invite__body">
-        Open Invisible Ink to join this Game Center match. If you do not have the app yet, install it from the App Store first.
+        Open Invisible Ink to join this Game Center match. If you do not have the app yet, install it from the App Store, then return to this link. Keep the room code below if you need to join manually.
       </p>
       <div class="match-invite__actions">
         <a href={fallbackAppURL} id="open-app-link" class="match-invite__button match-invite__button--primary">Open Invisible Ink</a>
@@ -44,10 +50,8 @@ const fallbackAppURL = `invisibleink://match/${mode}`;
   </section>
 
   <script define:vars={{ mode, appStoreURL, appsFlyerOneLinkURL }}>
-    const code = new URLSearchParams(window.location.search)
-      .get('code')
-      ?.replace(/\D/g, '')
-      .slice(0, 4) ?? '';
+    const rawCode = new URLSearchParams(window.location.search).get('code')?.trim() ?? '';
+    const code = /^[1-9][0-9]{3}$/.test(rawCode) ? rawCode : '';
     const appURL = `invisibleink://match/${mode}${code ? `?code=${code}` : ''}`;
     const webURL = `${window.location.origin}/match/${mode}${code ? `?code=${code}` : ''}`;
     const openAppLink = document.getElementById('open-app-link');
@@ -55,11 +59,13 @@ const fallbackAppURL = `invisibleink://match/${mode}`;
     const codeElement = document.getElementById('match-code');
 
     function installURL() {
-      if (!appsFlyerOneLinkURL) {
+      if (!code || !appsFlyerOneLinkURL) {
         return appStoreURL;
       }
 
-      const url = new URL(appsFlyerOneLinkURL);
+      let url;
+      try { url = new URL(appsFlyerOneLinkURL); } catch { return appStoreURL; }
+      if (url.protocol !== 'https:') return appStoreURL;
       url.searchParams.set('deep_link_value', 'private_match');
       url.searchParams.set('deep_link_sub1', mode);
       url.searchParams.set('deep_link_sub2', code);
@@ -88,19 +94,16 @@ const fallbackAppURL = `invisibleink://match/${mode}`;
       codeElement.removeAttribute('hidden');
     }
 
-    window.setTimeout(() => {
-      window.location.href = appURL;
-    }, 300);
-
-    window.setTimeout(() => {
-      if (!document.hidden) {
-        window.location.href = deferredInstallURL;
-      }
-    }, 1800);
+    if (!code) {
+      document.getElementById('invite-error')?.removeAttribute('hidden');
+      openAppLink?.removeAttribute('href');
+      openAppLink?.setAttribute('aria-disabled', 'true');
+    }
   </script>
 </BaseLayout>
 
 <style>
+  [aria-disabled="true"] { opacity: .5; pointer-events: none; }
   .match-invite {
     min-height: 100svh;
     display: grid;
