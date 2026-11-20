@@ -8,67 +8,96 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container container--narrow">
       <div class="reveal">
         <h1>Privacy Policy</h1>
-        <p class="legal-date">Last updated: July 17, 2026</p>
+        <p class="legal-date">Last updated: November 20, 2026</p>
       </div>
 
       <div class="legal-content reveal" style="transition-delay: 0.1s;">
 
-        <p>Invisible Ink is a blind drawing and party game. You can draw without creating an account. This policy explains what data the app and its service providers process, why it is used, and the choices available to you.</p>
+        <p>Invisible Ink is a blind drawing and party game for iPhone, iPad and Mac (App Store), Android (Google Play) and the web. You can draw without creating an account. Online play on Android and the web creates an anonymous account the first time you choose an online name (see <a href="#online-play">Online play on Android and the web</a>). This policy explains what data the app and its service providers process, why it is used, and the choices available to you.</p>
 
-        <h2>Drawings and Game Content</h2>
+        <h2>Drawings and game content</h2>
         <p>Most drawings are stored on your device. If you enable iCloud features, Apple may sync eligible app data through your iCloud account. Real-time online play, Game Center matches, and SharePlay transmit the content and game state needed to connect participants and run the session; Invisible Ink does not retain a permanent copy of those real-time session drawings.</p>
         <p>Tournament submissions are retained in the app's public CloudKit database so Invisible Ink can provide tournament participation, voting, leaderboards, results, and rewards. A submission may include a drawing thumbnail, score, submission date, tournament and round identifiers, and your Game Center player ID and display name. Tournament entries are available to other app users through tournament features and are accessible to the developer through the app's CloudKit container.</p>
+        <p>On Android and the web, online games run on Google Firebase instead of Game Center and CloudKit. The drawings, guesses and moves you make in an online game are sent to the other players of that game and stored with it, as described in the next section. Drawings you make offline stay on your device.</p>
 
-        <h2>Analytics and Diagnostics</h2>
+        <h2 id="online-play">Online play on Android and the web</h2>
+        <p><strong>When it starts.</strong> Nothing is sent until you open an online mode (online Guess What I Drew, the Speed Draw and Copycat duels, Blind Relay, Draw Together, Tournaments or Friends) and choose an online name. The app then signs in to Google Firebase with an anonymous account: a random ID, with no e-mail address, phone number or password.</p>
+        <p><strong>What is stored, and who sees it.</strong></p>
+        <ul>
+        <li><strong>Your online profile:</strong> the online name you choose (up to 24 characters, checked by the app's word filter), your avatar emoji, the app's language, the platform (Android or web) and the app version. Other players see your name and avatar.</li>
+        <li><strong>Games:</strong> the players of each game, their scores and turns, and what you play in it: your drawings (as pen strokes), prompts and guesses. Only the players of that game can see it.</li>
+        <li><strong>Live games</strong> (online Guess What I Drew and the duels played live, Blind Relay, Draw Together): who is in the game and whether they are connected, the moves sent during play and, in Draw Together, where your finger is on the shared canvas. Only the players of that game can see them.</li>
+        <li><strong>Leaderboards and achievements:</strong> once you have an online name, your best scores (including Speed Draw, Copycat and your Daily Challenge streak) go on the online leaderboards with your name and avatar, and your unlocked achievements are saved so another device can restore them. Leaderboards are visible to other players; achievements only to you.</li>
+        <li><strong>Friends and blocks:</strong> the players you add as friends, your friend code and the players you block. Only you can see your friends list and block list; anyone with your friend code can add you.</li>
+        <li><strong>Tournaments:</strong> your entries (drawing, online name, avatar, Ink Aura level, team and time), your votes, your results and rewards. Entries are visible to other players (anonymously while voting); your votes are visible only to you.</li>
+        <li><strong>Reports:</strong> if you report a player or a tournament entry, the report (who and what was reported, the reason and any note you write) is stored for moderation and is seen only by the developer.</li>
+        </ul>
+        <p><strong>Why.</strong> To run online games, matchmaking, invites, leaderboards, friends and tournaments, to keep scores and rewards, and to keep online play safe (moderation and abuse prevention). Online play data is never sold and never used for advertising.</p>
+        <p><strong>Where.</strong> Google Firebase stores online play data in Europe: Cloud Firestore in the eur3 multi-region and the Realtime Database in europe-west1 (Belgium). Firebase Authentication is a global Google service, so your anonymous ID may be processed outside the European Economic Area under Google's data-processing terms. Google processes your IP address to provide the service and prevent abuse. All data is encrypted in transit.</p>
+        <p><strong>How long.</strong></p>
+        <ul>
+        <li>Live game data: removed by the players' apps when the game ends.</li>
+        <li>Finished and abandoned games, with their drawings and guesses: kept with the game, so its players can look back at the results.</li>
+        <li>Your profile, leaderboard entries, achievements, friends, friend code, block list, and your tournament entries, votes, results and rewards: kept until you delete your online data, or until you haven't used online play for 24 months, after which we delete them.</li>
+        <li>Reports: kept for up to 12 months, also after the reporter deletes their online data.</li>
+        </ul>
+        <p><strong>Deleting your online data.</strong> In the app, open Settings &rsaquo; Online &rsaquo; Delete My Online Data. This deletes your online profile (name and avatar), your entries on the all-time and current week's leaderboards, your achievements, friends list, friend code and block list, and takes you out of games in progress. If you're offline, the deletion finishes the next time the app connects. Your anonymous account ID, your entries on earlier weeks' leaderboards, your place in other players' friends lists and your tournament entries, votes, results and rewards can't be removed by the app on its own yet: to have them deleted, e-mail <a href="mailto:privacy@blinddraw.ink">privacy@blinddraw.ink</a>. Reports you filed are kept for moderation as described above, and games you already finished stay visible to their other players. The steps are also on <a href="/privacy/delete-account/">Delete your online data</a>.</p>
+
+        <h2>Analytics and diagnostics</h2>
         <p>When Analytics Collection is enabled in Settings, Invisible Ink uses Firebase Analytics, Firebase Crashlytics, and AppsFlyer to understand app usage, stability, acquisition, and feature performance. Depending on the service and your permissions, this may include:</p>
         <ul>
-          <li>app interactions, screens, game modes, session timing, and feature outcomes;</li>
-          <li>device and app information, identifiers, approximate location derived from an IP address, and campaign attribution data;</li>
-          <li>crash reports, performance information, and other diagnostic data; and</li>
-          <li>purchase events such as product ID, product type, price, currency, and transaction identifier.</li>
+        <li>app interactions, screens, game modes, session timing, and feature outcomes;</li>
+        <li>device and app information, identifiers, approximate location derived from an IP address, and campaign attribution data;</li>
+        <li>crash reports, performance information, and other diagnostic data; and</li>
+        <li>purchase events such as product ID, product type, price, currency, and transaction identifier.</li>
         </ul>
         <p>You can turn off optional analytics in the app's Settings. This does not disable processing required to provide purchases, online features, consent controls, or advertising in the ad-supported version.</p>
+        <p>On Android, Firebase Analytics and Crashlytics wait until Google's consent form has been answered where it is required, and use advertising storage only if you allowed it. Android does not use AppsFlyer. The web version doesn't use analytics.</p>
 
         <h2>Advertising</h2>
         <p>The ad-supported version uses Google AdMob to load and measure banner, interstitial, and rewarded ads. AdMob may process device identifiers, approximate location, advertising data, product interaction, and diagnostic information for advertising, measurement, fraud prevention, and service operation. Users with Premium or Remove Ads access do not receive ads, and Invisible Ink avoids starting the advertising SDK after their entitlement is confirmed.</p>
+        <p>On Android, the Google Mobile Ads SDK may use your device's advertising ID; you can reset or delete it in your device's settings. The web version shows no ads.</p>
 
-        <h2>Consent and Tracking Choices</h2>
+        <h2>Consent and tracking choices</h2>
         <p>Where required, the app presents Google's consent form before requesting ads. A Privacy Choices row appears in Settings when regional rules require an ongoing way to review that consent.</p>
         <p>The app may also ask for Apple's App Tracking Transparency permission. If you deny permission, the app and its SDKs cannot access the Identifier for Advertisers (IDFA). Ad-supported features may still use non-personalized or contextual ads and limited measurement where permitted by law and your consent choices.</p>
 
         <h2>Purchases</h2>
         <p>Payments are processed by Apple through StoreKit. Invisible Ink does not receive your payment-card details. The app verifies entitlement and may send purchase-event information to Firebase and AppsFlyer for revenue analytics, attribution, duplicate prevention, and advertising measurement.</p>
+        <p>On Android, payments are processed by Google Play, and Invisible Ink does not receive your payment details. When purchases are offered on Android, the app uses RevenueCat to confirm what you bought and unlock it; RevenueCat receives the purchase and an app-specific user ID, never your payment details.</p>
 
-        <h2>Notifications and Uninstall Measurement</h2>
-        <p>If you allow notifications, Apple provides the app with a push-notification token. When optional analytics is enabled, AppsFlyer may use that token to measure whether an installation remains active. Notification permission can be changed at any time in iOS Settings.</p>
+        <h2>Notifications and uninstall measurement</h2>
+        <p>When the app registers with Apple for remote notifications, Apple provides a device token; this registration does not itself display notification permission. When optional analytics is enabled, AppsFlyer may use that token to measure whether an installation remains active. Your notification-display permission can be changed at any time in iOS Settings.</p>
+        <p>On Android, reminders (the Daily Challenge and tournaments) are scheduled on your device. The Android app does not register for push notifications and sends no device token.</p>
 
-        <h2>Apple Services</h2>
-        <p>Features such as iCloud, Game Center, SharePlay, and StoreKit use services provided by Apple and are also subject to <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>. Invisible Ink uses an app-specific CloudKit container to retain the tournament information described above.</p>
+        <h2>Apple services</h2>
+        <p>Features such as iCloud, Game Center, SharePlay, and StoreKit use services provided by Apple and are also subject to <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>. Invisible Ink uses an app-specific CloudKit container to retain the tournament information described above.</p>
 
-        <h2>Service Providers</h2>
+        <h2>Service providers</h2>
         <ul>
-          <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a> for Firebase, AdMob, and the User Messaging Platform</li>
-          <li><a href="https://www.appsflyer.com/legal/privacy-policy/" target="_blank" rel="noopener">AppsFlyer Privacy Policy</a></li>
-          <li><a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy</a></li>
+        <li><a href="https://policies.google.com/privacy">Google Privacy Policy</a> for Firebase, AdMob, and the User Messaging Platform</li>
+        <li><a href="https://www.appsflyer.com/legal/privacy-policy/">AppsFlyer Privacy Policy</a></li>
+        <li><a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a></li>
+        <li><a href="https://www.revenuecat.com/privacy">RevenueCat Privacy Policy</a> for Android purchases, once they are offered</li>
         </ul>
 
-        <h2>Retention and Deletion</h2>
+        <h2>Retention and deletion</h2>
         <p>Local drawings and preferences remain until you delete them or remove the app. Synced private iCloud data can be managed through your Apple account. Tournament records remain in the public CloudKit database as needed to operate and preserve tournament results, leaderboards, voting, and rewards. You may request access to or deletion of your tournament submission data by contacting <a href="mailto:privacy@blinddraw.ink">privacy@blinddraw.ink</a>.</p>
-        <p>Service providers retain analytics, advertising, and diagnostic data under their own retention settings and policies. Because no Invisible Ink account is required, deleting the app removes locally stored app data but does not automatically erase tournament records or data already processed by Apple or another service provider.</p>
+        <p>Service providers retain analytics, advertising, and diagnostic data under their own retention settings and policies. Because no Invisible Ink account is required, deleting the app removes locally stored app data but does not automatically erase tournament records, online play data or data already processed by Apple, Google or another service provider. To delete your online play data on Android or the web, use Settings &rsaquo; Online &rsaquo; Delete My Online Data, or follow <a href="/privacy/delete-account/">Delete your online data</a>.</p>
 
-        <h2>Children's Privacy</h2>
+        <h2>Children</h2>
         <p>Invisible Ink is a general-audience app and is not directed to children under 13. We do not knowingly ask children to provide personal contact information or create an Invisible Ink account. Parents and guardians should supervise a child's device, advertising, Game Center, SharePlay, and privacy settings.</p>
+        <p>Online play on Android and the web shows the online name you choose to other players. Choose a name that doesn't identify you.</p>
 
-        <h2>Changes to This Policy</h2>
+        <h2>Changes</h2>
         <p>We may update this policy when the app, its providers, or legal requirements change. The latest version and update date will be posted on this page.</p>
 
-        <h2>Contact Us</h2>
+        <h2>Contact</h2>
         <p>Questions or privacy requests can be sent to <a href="mailto:privacy@blinddraw.ink">privacy@blinddraw.ink</a>.</p>
 
       </div>
     </div>
   </section>
-
 </BaseLayout>
 
 <style>
