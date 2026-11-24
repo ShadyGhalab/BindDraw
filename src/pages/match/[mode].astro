@@ -11,6 +11,9 @@ export function getStaticPaths() {
     { params: { mode: 'collab' } },
     { params: { mode: 'blindrelay' } },
     { params: { mode: 'speeddraw' } },
+    { params: { mode: 'guesslive' } },
+    { params: { mode: 'copycatlive' } },
+    { params: { mode: 'speeddrawlive' } },
   ];
 }
 
@@ -22,6 +25,9 @@ const modeNames: Record<string, string> = {
   collab: 'Draw Together',
   blindrelay: 'Blind Relay',
   speeddraw: 'Speed Draw',
+  guesslive: 'Live Guess What I Drew',
+  copycatlive: 'Live Copycat Duel',
+  speeddrawlive: 'Live Speed Draw',
 };
 
 const modeName = modeNames[mode] ?? 'Private Match';
@@ -51,6 +57,11 @@ const fallbackAppURL = `invisibleink://match/${mode}`;
 
   <script define:vars={{ mode, appStoreURL, appsFlyerOneLinkURL }}>
     const rawCode = new URLSearchParams(window.location.search).get('code')?.trim() ?? '';
+    // Six-character Firebase invitations belong to Android/web, not iOS Game Center.
+    const onlineCode = rawCode.toUpperCase();
+    if (/^[2-9A-HJKMNP-Z]{6}$/.test(onlineCode)) {
+      window.location.replace(`/match/?mode=${encodeURIComponent(mode)}&code=${encodeURIComponent(onlineCode)}`);
+    }
     const code = /^[1-9][0-9]{3}$/.test(rawCode) ? rawCode : '';
     const appURL = `invisibleink://match/${mode}${code ? `?code=${code}` : ''}`;
     const webURL = `${window.location.origin}/match/${mode}${code ? `?code=${code}` : ''}`;

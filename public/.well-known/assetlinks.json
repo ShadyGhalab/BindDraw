@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.tendonlife.invisibleink",
+      "sha256_cert_fingerprints": [
+        "D5:33:9E:F9:BD:59:85:98:B8:CF:95:6F:C5:D8:C0:4D:80:FC:CD:B4:39:C2:44:62:B6:86:86:2C:C3:D0:16:DC",
+        "A9:8E:4B:8F:73:00:83:F0:64:C7:9B:6A:69:D6:CE:EF:CC:09:EA:C0:07:FF:B0:DF:FC:70:FB:8A:B1:A2:93:78"
+      ]
+    }
+  }
+]
