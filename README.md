@@ -41,3 +41,12 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Android and web match invitations
+
+This repository is the public website for `https://blinddraw.ink`. GitHub Pages publishes Astro's `dist/` on pushes to `main`.
+
+- `public/.well-known/assetlinks.json` must contain the Play app-signing SHA-256 fingerprints for `com.tendonlife.invisibleink`. Keep it synchronized with the Invisible-Ink app repository; do not publish upload or shared debug certificates.
+- `public/match/index.html` and `public/match/invite.js` serve six-character Android/web invitations. Existing `/match/<mode>?code=...` links route six-character codes to that landing page, preserving the existing four-digit iOS Game Center flow.
+- The browser fallback uses the default Firebase Hosting web game, `https://blind-draw-c6ee2.web.app`. That app must be deployed separately from the marketing site.
+- The deployment checks both association files and the invitation landing files in the build output. Check the public URL after deployment: `curl -i https://blinddraw.ink/.well-known/assetlinks.json`.

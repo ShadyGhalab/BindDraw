@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex">
+  <title>Join an Invisible Ink game</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #080912; color: #f8f7ff; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: radial-gradient(ellipse at top, #302046, #080912 65%); }
+    main { box-sizing: border-box; width: min(520px, 100%); padding: 32px 24px; text-align: center; }
+    h1 { font-size: clamp(28px, 7vw, 44px); margin: 0 0 14px; }
+    p { line-height: 1.5; color: #ddd4e8; }
+    .code { font-size: 28px; letter-spacing: .12em; font-weight: 800; }
+    .actions { display: grid; gap: 12px; margin: 24px 0; }
+    .actions[hidden] { display: none; }
+    a { display: block; padding: 15px; border-radius: 12px; background: #2d263a; color: #fff; font-weight: 700; text-decoration: none; }
+    a.primary { background: #f8f7ff; color: #171020; }
+    a:focus-visible { outline: 3px solid #b3a1ff; outline-offset: 3px; }
+    small { color: #ddd4e8; }
+  </style>
+  <script defer src="/match/invite.js"></script>
+</head>
+<body>
+  <main>
+    <h1 id="title">Join an Invisible Ink game</h1>
+    <p id="message">Checking your invitation…</p>
+    <p id="code" class="code"></p>
+    <div id="actions" class="actions" hidden>
+      <a id="browser" class="primary" href="https://blind-draw-c6ee2.web.app/">Play in browser</a>
+      <a id="app" href="invisibleink://">Open app</a>
+      <a href="https://play.google.com/store/apps/details?id=com.tendonlife.invisibleink">Get the Android app on Google Play</a>
+    </div>
+    <noscript><p>Enable JavaScript to open this invitation, or enter the invitation code in Invisible Ink manually.</p></noscript>
+    <p><small>Already have the app? You can also enter the six-character code in Play Online.</small></p>
+    <a href="/">Invisible Ink home</a>
+  </main>
+</body>
+</html>

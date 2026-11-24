@@ -35,6 +35,16 @@ jobs:
           PUBLIC_APPSFLYER_ONELINK_URL: ${{ vars.PUBLIC_APPSFLYER_ONELINK_URL }}
         run: npm run build
 
+      - name: Verify public app links and invitation pages
+        run: |
+          mkdir -p dist/.well-known
+          cp public/.well-known/assetlinks.json public/.well-known/apple-app-site-association dist/.well-known/
+          cmp public/.well-known/assetlinks.json dist/.well-known/assetlinks.json
+          cmp public/.well-known/apple-app-site-association dist/.well-known/apple-app-site-association
+          test -f dist/match/index.html
+          test -f dist/match/invite.js
+          node --test tests/app-links.test.mjs
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
