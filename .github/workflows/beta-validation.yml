@@ -1,0 +1,29 @@
+name: Validate beta portal
+
+on:
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'tests/beta-portal.test.mjs'
+      - 'package*.json'
+      - 'astro.config.mjs'
+      - '.github/workflows/beta-validation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          PUBLIC_APPSFLYER_ONELINK_URL: ${{ vars.PUBLIC_APPSFLYER_ONELINK_URL }}
+      - run: node --test tests/beta-portal.test.mjs
