@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'src/**'
+      - 'scripts/beta-*.mjs'
+      - 'scripts/generate-beta.mjs'
       - 'public/**'
       - 'tests/beta-portal.test.mjs'
       - 'package*.json'
@@ -23,6 +25,7 @@ jobs:
           node-version: "20"
           cache: npm
       - run: npm ci
+      - run: node scripts/generate-beta.mjs --check
       - run: npm run build
         env:
           PUBLIC_APPSFLYER_ONELINK_URL: ${{ vars.PUBLIC_APPSFLYER_ONELINK_URL }}

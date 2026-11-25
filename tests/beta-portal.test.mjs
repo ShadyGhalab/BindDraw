@@ -1,39 +1,45 @@
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import test from 'node:test';
-import { games, groupUrl, portalUrl } from '../src/data/beta.mjs';
-
-const read = (path) => readFileSync(new URL(path, import.meta.url), 'utf8');
-
-test('public enrollment links use the existing Google Group and Invisible Ink Android package ID', () => {
-  assert.equal(groupUrl, 'https://groups.google.com/g/alpha-android-testers');
-  assert.equal(portalUrl, 'https://blinddraw.ink/beta/');
-  assert.deepEqual(games.map((g) => g.packageId), ['com.tendonlife.invisibleink']);
-  for (const game of games) {
-    assert.equal(game.testingUrl, 'https://play.google.com/apps/testing/' + game.packageId);
-    assert.equal(game.storeUrl, 'https://play.google.com/store/apps/details?id=' + game.packageId);
-    assert.ok(existsSync(new URL('../public/' + game.icon, import.meta.url)));
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { config, catalog, keys } from '../scripts/beta-content.mjs';
+import { outputs } from '../scripts/generate-beta.mjs';
+const root = fileURLToPath(new URL('../',import.meta.url));
+test('all localized pages are complete and reproducible',()=>{
+  assert.equal(config.locales.length, 21);
+  for(const [path,expected] of Object.entries(outputs())){
+    const actual=readFileSync(join(root,path),'utf8');
+    assert.equal(actual,expected,path);
+    assert.ok(actual.includes('https://groups.google.com/g/alpha-android-testers'));
+    assert.ok(actual.includes('https://play.google.com/apps/testing/'+config.pkg));
+    assert.ok(actual.includes('https://play.google.com/store/apps/details?id='+config.pkg));
+    assert.ok(actual.includes('mailto:'+config.email));
+    assert.ok(actual.includes('id="main-content"'));
+    assert.doesNotMatch(actual,/<form\b|<input[^>]*type="email"/i);
+    assert.doesNotMatch(actual,/Teddy Dreams|com\.tendonlife\.teddybear|teddytoymatch\.com/i);
+  }
+  for(const locale of config.locales){
+    assert.equal(catalog[locale].length,keys.length);
+    assert.ok(catalog[locale].every(s=>typeof s==='string' && s.trim()));
+    const html=readFileSync(join(root,config.prefix,locale,'index.html'),'utf8');
+    assert.ok(html.includes('lang="'+locale+'" dir="'+(locale==='ar'?'rtl':'ltr')+'"'));
+    assert.ok(html.includes('data-auto-locale="false"'));
+    for(const l of config.locales) assert.ok(html.includes('href="/beta/'+l+'/"'));
   }
 });
-
-test('built beta page has functional direct enrollment links and accessible enrollment instructions', () => {
-  const html = read('../dist/beta/index.html');
-  for (const href of [groupUrl, portalUrl, ...games.flatMap((g) => [g.testingUrl, g.storeUrl, g.feedback])]) {
-    assert.ok(html.includes('href="' + href + '"'), 'Missing link: ' + href);
+test('all local artwork and assets exist; homepage links to beta',()=>{
+  const publicRoot = join(root,'public');
+  for(const path of [config.icon,config.art,'/beta/beta.css','/beta/locale.js']){
+    assert.ok(existsSync(join(publicRoot,path)),path);
   }
-  assert.ok(html.includes('same Google account'));
-  assert.ok(html.includes('14 consecutive days'));
-  assert.ok(html.includes('No separate email submission'));
-  assert.ok(html.includes('id="main-content"'));
-  assert.doesNotMatch(html, /Teddy Dreams|teddybear|teddytoymatch\.com/i);
-  assert.doesNotMatch(html, /<form\b/i);
-  assert.doesNotMatch(html, /<input[^>]*type="email"/i);
-  for (const game of games) {
-    assert.ok(existsSync(new URL('../dist/' + game.icon, import.meta.url)));
-  }
+  const homepage = readFileSync(join(root,'src/layouts/BaseLayout.astro'),'utf8');
+  assert.ok(homepage.includes('beta/'));
 });
-
-test('the main website links to the beta portal after build', () => {
-  const html = read('../dist/index.html');
-  assert.ok(html.includes('href="/beta/"'));
+test('Astro publishes every static localized page',()=>{
+  for(const path of Object.keys(outputs())) {
+    const built=path.replace(/^public\//,'dist/');
+    assert.equal(readFileSync(join(root,built),'utf8'),readFileSync(join(root,path),'utf8'));
+  }
+  assert.ok(readFileSync(join(root,'dist/index.html'),'utf8').includes('href="/beta/"'));
 });
