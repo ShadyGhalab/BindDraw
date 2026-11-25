@@ -5,10 +5,10 @@ import { games, groupUrl, portalUrl } from '../src/data/beta.mjs';
 
 const read = (path) => readFileSync(new URL(path, import.meta.url), 'utf8');
 
-test('public enrollment links use the existing Google Group and exact Android package IDs', () => {
+test('public enrollment links use the existing Google Group and Invisible Ink Android package ID', () => {
   assert.equal(groupUrl, 'https://groups.google.com/g/alpha-android-testers');
   assert.equal(portalUrl, 'https://blinddraw.ink/beta/');
-  assert.deepEqual(games.map((g) => g.packageId), ['com.tendonlife.invisibleink', 'com.tendonlife.teddybear']);
+  assert.deepEqual(games.map((g) => g.packageId), ['com.tendonlife.invisibleink']);
   for (const game of games) {
     assert.equal(game.testingUrl, 'https://play.google.com/apps/testing/' + game.packageId);
     assert.equal(game.storeUrl, 'https://play.google.com/store/apps/details?id=' + game.packageId);
@@ -25,6 +25,7 @@ test('built beta page has functional direct enrollment links and accessible enro
   assert.ok(html.includes('14 consecutive days'));
   assert.ok(html.includes('No separate email submission'));
   assert.ok(html.includes('id="main-content"'));
+  assert.doesNotMatch(html, /Teddy Dreams|teddybear|teddytoymatch\.com/i);
   assert.doesNotMatch(html, /<form\b/i);
   assert.doesNotMatch(html, /<input[^>]*type="email"/i);
   for (const game of games) {

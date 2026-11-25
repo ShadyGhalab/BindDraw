@@ -2,8 +2,8 @@
 import '../styles/global.css';
 import { games, groupUrl, portalUrl } from '../data/beta.mjs';
 const base = import.meta.env.BASE_URL;
-const title = 'Android Beta Testers | ShadyGhalabs';
-const description = 'Join our Android testing community, try Invisible Ink and Teddy Dreams, and help shape future games.';
+const title = 'Invisible Ink | Android Beta Testing';
+const description = 'Join the Android beta for Invisible Ink: Drawing Games. Draw, play, and share feedback.';
 ---
 
 <!doctype html>
@@ -29,7 +29,7 @@ const description = 'Join our Android testing community, try Invisible Ink and T
       <div class="shell header-inner">
         <a class="brand" href={portalUrl}>
           <span class="brand-mark" aria-hidden="true">✦</span>
-          <span>ShadyGhalabs <small>ANDROID BETA COMMUNITY</small></span>
+          <span>Invisible Ink <small>ANDROID BETA TESTING</small></span>
         </a>
         <a class="home-link" href={base}>Invisible Ink home <span aria-hidden="true">↗</span></a>
       </div>
@@ -37,11 +37,11 @@ const description = 'Join our Android testing community, try Invisible Ink and T
     <main id="main-content" class="shell">
       <section class="intro" aria-labelledby="hero-title">
         <span class="eyebrow"><span class="dot" aria-hidden="true"></span> EARLY ACCESS · ANDROID</span>
-        <h1 id="hero-title">Play early.<br/><span>Shape what’s next.</span></h1>
-        <p class="lead">Join a community of curious players. Try new games before their public release and help an independent developer make them better.</p>
+        <h1 id="hero-title">Draw early.<br/><span>Reveal what’s next.</span></h1>
+        <p class="lead">Try Invisible Ink on Android before its public release. Draw in the dark, play with friends, and help shape the next update.</p>
         <div class="hero-actions">
           <a class="action primary" href={groupUrl}>1. Join the testing community <span aria-hidden="true">↗</span></a>
-          <a class="action secondary" href="#games">Already a member? Choose a game <span aria-hidden="true">↓</span></a>
+          <a class="action secondary" href="#games">Already a member? Test Invisible Ink <span aria-hidden="true">↓</span></a>
         </div>
         <p class="small-note">You only need to join the Google Group once. Use the same Google account for every step.</p>
       </section>
@@ -49,16 +49,16 @@ const description = 'Join our Android testing community, try Invisible Ink and T
       <section class="instructions" aria-label="How testing works">
         <ol class="step-grid">
           <li><span class="step-num">01</span><div><h2>Join once</h2><p>Join our Google Group using the account on your Android phone.</p></div></li>
-          <li><span class="step-num">02</span><div><h2>Choose your games</h2><p>Opt in to each game you want to test through Google Play.</p></div></li>
+          <li><span class="step-num">02</span><div><h2>Become a tester</h2><p>Opt in to Invisible Ink through Google Play.</p></div></li>
           <li><span class="step-num">03</span><div><h2>Play &amp; share feedback</h2><p>Install, play regularly, and stay enrolled for at least 14 days.</p></div></li>
         </ol>
       </section>
 
       <section id="games" class="games-section" aria-labelledby="games-title">
         <div class="section-heading">
-          <p class="kicker">YOUR NEXT FAVORITE</p>
-          <h2 id="games-title">Choose a game to test</h2>
-          <p>Try one or both. Each game has its own Google Play opt-in.</p>
+          <p class="kicker">YOUR EARLY ACCESS</p>
+          <h2 id="games-title">Test Invisible Ink</h2>
+          <p>Join the test first, then install the game from Google Play.</p>
         </div>
         <div class="games-grid">
           {games.map((game) => (
@@ -88,7 +88,7 @@ const description = 'Join our Android testing community, try Invisible Ink and T
         <span class="calendar" aria-hidden="true">14<span>DAYS</span></span>
         <div>
           <h2 id="commitment-title">Your feedback makes a difference.</h2>
-          <p>Please stay opted in for at least 14 consecutive days. Play the games, try updates, and tell us what works, what feels confusing, and what you would improve. Your real experience matters more than simply installing an app.</p>
+          <p>Please stay opted in for at least 14 consecutive days. Play the game, try updates, and tell us what works, what feels confusing, and what you would improve. Your real experience matters more than simply installing an app.</p>
         </div>
       </section>
 
@@ -96,23 +96,23 @@ const description = 'Join our Android testing community, try Invisible Ink and T
         <h2 id="faq-title">Need help joining?</h2>
         <details>
           <summary>Google Play says the app is unavailable.</summary>
-          <p>Check that you have joined the Google Group, are using the same Google account on your Android phone, and have opted in to the specific game. Access depends on the active testing release, supported devices, and available countries. If you still cannot join, contact the developer.</p>
+          <p>Check that you have joined the Google Group, are using the same Google account on your Android phone, and have opted in to Invisible Ink. Access depends on the active testing release, supported devices, and available countries. If you still cannot join, contact the developer.</p>
         </details>
         <details>
           <summary>Do I need to send my email address?</summary>
           <p>No separate email submission is needed on this website. Google Groups and Google Play handle your membership and enrollment.</p>
         </details>
         <details>
-          <summary>Can I test both games?</summary>
-          <p>Yes. Join the community once, then opt in to each game's test individually. You can install the games after Google Play confirms eligibility.</p>
+          <summary>I already joined the Google Group. What next?</summary>
+          <p>You do not need to join the group again. Use the same Google account to opt in to Invisible Ink, then install it from Google Play.</p>
         </details>
         <details>
           <summary>How can I report a bug?</summary>
-          <p>Use the feedback link for the game above. Include your device model, Android version, and what happened. Please avoid sending private account or payment information.</p>
+          <p>Use the Invisible Ink feedback link above. Include your device model, Android version, and what happened. Please avoid sending private account or payment information.</p>
         </details>
       </section>
       <section class="share" aria-labelledby="share-title">
-        <div><h2 id="share-title">Know another Android player?</h2><p>Share this single link so they can join the community and choose a game.</p></div>
+        <div><h2 id="share-title">Know another Android player?</h2><p>Share this link so they can join the Invisible Ink Android test.</p></div>
         <div class="share-actions">
           <a class="share-url" href={portalUrl}>{portalUrl}</a>
           <button class="action secondary copy-button" type="button" hidden>Copy link</button>
@@ -188,21 +188,21 @@ const description = 'Join our Android testing community, try Invisible Ink and T
   .games-section { padding: 3rem 0; scroll-margin-top: 1rem; }
   .kicker { letter-spacing: .13em; color: #d5b8ff !important; font-weight: 750; font-size: .76rem !important; margin-bottom: .6rem; }
   .section-heading h2 { font-size: clamp(1.8rem, 4vw, 2.75rem); margin-bottom: .6rem; }
-  .games-grid { margin-top: 1.5rem; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.3rem; }
+  .games-grid { margin-top: 1.5rem; display: grid; grid-template-columns: minmax(0,1fr); gap: 1.3rem; }
   .game { display: flex; flex-direction: column; min-width: 0; overflow: hidden; border: 1px solid #bba2ea40; border-radius: 24px; background: #19142a; }
   .game-art { position: relative; display: grid; place-items: center; min-height: 210px; background: radial-gradient(ellipse at 50% 60%, #9e54e990, transparent 65%), linear-gradient(140deg,#372259,#18264c); overflow: hidden; }
-  .teddy-dreams .game-art { background: radial-gradient(ellipse at 50% 60%,#ffbc7a80,transparent 67%),linear-gradient(140deg,#774265,#503147); }
+  
   .game-art img { position: relative; width: 112px; height: 112px; border-radius: 25%; box-shadow: 0 14px 40px #09041599; object-fit: cover; }
   .art-label { position: absolute; top: 15px; left: 17px; padding: .3rem .65rem; border-radius: 99px; background: #0e0b1bbf; color: #fff; font-size: .68rem; font-weight: 700; letter-spacing: .08em; }
   .art-star { color: #fff4cc; position: absolute; opacity: .75; font-size: 2rem; }
   .star-one { top: 26%; right: 17%; } .star-two { bottom: 16%; left: 17%; font-size: 1.2rem; }
   .game-body { display: flex; flex: 1; flex-direction: column; gap: .75rem; padding: 1.5rem; }
   .genre { color: #dfc5ff; font-size: .78rem; font-weight: 700; }
-  .teddy-dreams .genre { color: #ffcfab; }
+  
   .game h3 { font-size: clamp(1.35rem,3vw,1.8rem); }
   .game-actions { display: grid; gap: .65rem; margin-top: auto; padding-top: .7rem; }
   .game-primary { background: #d9c2ff; color: #251640; }
-  .teddy-dreams .game-primary { background: #ffdaa9; color: #38202c; }
+  
   .game-secondary { color: #f5edff; background: #241d39; border-color: #695b86; }
   .feedback { font-size: .9rem; color: #ded0ff; text-decoration: underline; text-underline-offset: 4px; align-self: flex-start; margin-top: .4rem; }
   .commitment, .share { display: flex; align-items: center; gap: 1.5rem; padding: 1.75rem; border-radius: 22px; border: 1px solid #bba2ea33; background: #211930; }
@@ -221,6 +221,7 @@ const description = 'Join our Android testing community, try Invisible Ink and T
   .beta-footer { margin-top: 2.5rem; border-top: 1px solid #ffffff18; }
   .footer-inner { justify-content: flex-start; gap: 1.2rem; color: #d2c6e4; font-size: .85rem; }
   .footer-inner a { text-decoration: underline; text-underline-offset: 3px; }
+  @media (min-width: 761px) { .game { flex-direction: row; } .game-art { flex: 0 0 36%; min-height: 320px; } }
   @media (max-width: 760px) {
     .step-grid { grid-template-columns: 1fr; gap: 1.1rem; }
     .games-grid { grid-template-columns: 1fr; }

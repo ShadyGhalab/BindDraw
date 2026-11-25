@@ -12,16 +12,6 @@ export const games = [
     description: 'Draw in the dark, reveal your creations, and challenge friends in creative party games.',
     feedback: 'mailto:support@blinddraw.ink',
   },
-  {
-    id: 'teddy-dreams',
-    name: 'Teddy Dreams: Match 3 Puzzle',
-    shortName: 'Teddy Dreams',
-    packageId: 'com.tendonlife.teddybear',
-    icon: 'images/beta/teddy-dreams.png',
-    genre: 'Cozy · Match 3 · Puzzle',
-    description: 'Match adorable teddy bears, discover cozy bonuses, and explore a dreamy bedtime adventure.',
-    feedback: 'mailto:Feedback@teddytoymatch.com',
-  },
 ].map((game) => ({
   ...game,
   testingUrl: 'https://play.google.com/apps/testing/' + game.packageId,
