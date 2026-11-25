@@ -76,3 +76,7 @@ Artwork provenance is in `scripts/beta-funnel.mjs`. All three phone screenshots 
 ### Complete store gallery
 
 All six unique English Google Play phone screenshots are now displayed in their original store order. The existing feature graphic remains above the enrollment area. The gallery is keyboard-focusable, horizontally scrollable, lazy-loaded, and supports opening the full original image. It appears below the enrollment steps, on every localized invitation route. Existing store artwork can be English even on a translated page. Source files and Git blob checksums remain documented in `scripts/beta-funnel.mjs`.
+
+### Personal invitation and optional testing adventure
+
+The personal developer message explains why honest testing helps the Android launch; the founding-tester invitation explicitly separates joining the Google Group from accepting the Google Play test. No reward, artificial scarcity, verified count or special entitlement is promised. The optional six activities (days 1, 3, 5, 7, 10 and 14) are suggestions, not extra conditions or verified progress. The feature-suggestion link opens a draft email, and the original feedback and enrollment links are unchanged. The optional browser preview is the existing Firebase-hosted web game and explicitly does not count as Android closed testing. All copy lives in `scripts/beta-community.mjs`, including each supported language. No new remote services or analytics are introduced. The existing screenshot gallery, local enrollment checklist and calendar reminder remain in place.
