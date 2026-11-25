@@ -93,3 +93,16 @@ test('next action only advances on explicitly checked steps; reminder is 14 days
   assert.ok(ics.includes('SUMMARY:Title\\, semicolon\\;'));
   assert.ok(ics.includes('DESCRIPTION:note\\nline'));
 });
+
+
+test('all six original English Play Store phone screenshots are present, ordered, unique and lazy-loaded',()=>{
+  assert.equal(art.screenshots.length,6);
+  assert.deepEqual(art.screenshots.map(image=>image.url.split('/').pop()),['01-free-draw.png','02-speed-draw.png','03-copycat.png','04-daily.png','05-online.png','06-arcade.png']);
+  for(const [path,html] of Object.entries(outputs())){
+    assert.equal((html.match(/class="store-shot"/g)||[]).length,6,path);
+    assert.ok(html.includes('class="store-gallery" role="region" aria-labelledby="preview-title" tabindex="0"'));
+    for(const image of art.screenshots){assert.ok(html.includes('href="'+image.url+'" target="_blank" rel="noopener noreferrer"><img src="'+image.url+'"'),path);}
+    const gallery=html.split('<div class="store-gallery"')[1].split('</div>')[0];
+    assert.equal((gallery.match(/loading="lazy"/g)||[]).length,6,path);
+  }
+});
