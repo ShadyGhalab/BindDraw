@@ -43,7 +43,7 @@ jobs:
           cmp public/.well-known/apple-app-site-association dist/.well-known/apple-app-site-association
           test -f dist/match/index.html
           test -f dist/match/invite.js
-          node --test tests/app-links.test.mjs tests/beta-portal.test.mjs
+          node --test tests/app-links.test.mjs tests/beta-portal.test.mjs tests/beta-interaction.test.mjs
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
