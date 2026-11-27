@@ -66,6 +66,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </summary>
           <div class="faq-item__answer">
             <p>Go to <strong>Settings</strong> (gear icon) → scroll to the <strong>Premium</strong> section → tap <strong>"Restore Purchases"</strong>. Make sure you're signed in with the same Apple ID you used for the original purchase. Your premium features will be restored automatically.</p>
+            <p>On Apple TV, open <strong>More</strong> → <strong>Premium &amp; Progress</strong> and choose <strong>"Restore purchases"</strong> with the same Apple Account.</p>
           </div>
         </details>
 
@@ -86,6 +87,59 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </summary>
           <div class="faq-item__answer">
             <p>From the main menu, tap <strong>"Guess What I Drew"</strong>. Add player names, then pass the device to the first drawer. They'll get a secret word to draw blind on the dark canvas. Once done, pass the device to the guessers who try to figure out what was drawn. It's hilarious fun for the whole family!</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            <span>Can I play Invisible Ink on Apple TV?</span>
+            <svg class="faq-item__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="faq-item__answer">
+            <p>Yes. On Apple TV you play with just the Siri Remote, no phone needed. Draw on your own in <strong>Free Draw</strong> and the <strong>Challenges</strong>, learn remote drawing in <strong>Learn to draw</strong> and the <strong>Drawing Academy</strong>, or start a <strong>Couch Party</strong> for 2–8 players and pass the remote (or use several game controllers) for Guess What I Drew, Blind Relay, Party Cup, a Knockout Tournament and more.</p>
+            <p>Find Invisible Ink in the App Store on your Apple TV. Premium you already own on iPhone or iPad works there too once you restore it.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            <span>How do I join a Phone Party on Apple TV with my iPhone?</span>
+            <svg class="faq-item__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="faq-item__answer">
+            <ol>
+              <li>On the Apple TV, choose <strong>TV Party</strong> → <strong>Phone Party</strong>. A room opens and shows a QR code.</li>
+              <li>Point your iPhone's Camera at the code and tap the Invisible Ink banner. The app opens and joins the room.</li>
+              <li>Everyone draws on their own iPhone, and the strokes appear on the TV as you draw. The artist picks a secret word and everyone else guesses on their phone.</li>
+            </ol>
+            <p>You can also open <strong>Play on TV</strong> in the iPhone app (on the main menu, or in <strong>Settings</strong>) and tap <strong>"Scan QR code"</strong>, or choose <strong>"Show pairing code"</strong> on the TV and type the 24 letters and numbers. Every iPhone needs the latest version of Invisible Ink and the same Wi‑Fi network as the Apple TV.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            <span>My iPhone can't find the Apple TV room. What should I do?</span>
+            <svg class="faq-item__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="faq-item__answer">
+            <ul>
+              <li>Make sure the iPhone and the Apple TV are on the same Wi‑Fi network. Guest and hotel networks often stop devices from seeing each other.</li>
+              <li>Allow local network access on the iPhone: <strong>Settings</strong> → <strong>Privacy &amp; Security</strong> → <strong>Local Network</strong> → turn on Invisible Ink.</li>
+              <li>Turn off any VPN on the iPhone while you play.</li>
+              <li>Update Invisible Ink on both the iPhone and the Apple TV.</li>
+              <li>Leave the Phone Party on the TV and start it again. Each room gets a fresh code, so scan the new one.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            <span>How do I draw with the Siri Remote?</span>
+            <svg class="faq-item__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="faq-item__answer">
+            <p>Choose <strong>"Lower pen"</strong>, then press the arrows to draw exact lines, and raise the pen to move to a new spot without drawing. For freehand lines, choose <strong>Direct drawing</strong>: swipe on the remote's touch surface to steer and click to raise or lower the pen. A game controller works too, with the left stick to steer and A for the pen. Press <strong>Back</strong> to return to the tools, then choose <strong>"Reveal"</strong>.</p>
+            <p>New to it? <strong>Learn to draw</strong> under <strong>More</strong> on the Home screen walks you through it in a few minutes.</p>
           </div>
         </details>
 
@@ -247,7 +301,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     line-height: 1.8;
   }
 
-  .faq-item__answer ul {
+  .faq-item__answer ul,
+  .faq-item__answer ol {
     padding-left: 1.5rem;
     margin-bottom: 0.75rem;
   }
