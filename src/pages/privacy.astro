@@ -8,12 +8,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container container--narrow">
       <div class="reveal">
         <h1>Privacy Policy</h1>
-        <p class="legal-date">Last updated: November 20, 2026</p>
+        <p class="legal-date">Last updated: November 27, 2026</p>
       </div>
 
       <div class="legal-content reveal" style="transition-delay: 0.1s;">
 
-        <p>Invisible Ink is a blind drawing and party game for iPhone, iPad and Mac (App Store), Android (Google Play) and the web. You can draw without creating an account. Online play on Android and the web creates an anonymous account the first time you choose an online name (see <a href="#online-play">Online play on Android and the web</a>). This policy explains what data the app and its service providers process, why it is used, and the choices available to you.</p>
+        <p>Invisible Ink is a blind drawing and party game for iPhone, iPad, Mac and Apple TV (App Store), Android (Google Play) and the web. You can draw without creating an account. Online play on Android and the web creates an anonymous account the first time you choose an online name (see <a href="#online-play">Online play on Android and the web</a>). This policy explains what data the app and its service providers process, why it is used, and the choices available to you.</p>
 
         <h2>Drawings and game content</h2>
         <p>Most drawings are stored on your device. If you enable iCloud features, Apple may sync eligible app data through your iCloud account. Real-time online play, Game Center matches, and SharePlay transmit the content and game state needed to connect participants and run the session; Invisible Ink does not retain a permanent copy of those real-time session drawings.</p>
@@ -45,6 +45,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <li>Reports: kept for up to 12 months, also after the reporter deletes their online data.</li>
         </ul>
         <p><strong>Deleting your online data.</strong> In the app, open Settings &rsaquo; Online &rsaquo; Delete My Online Data. This deletes your online profile (name and avatar) and your anonymous account, your entries on every leaderboard, your achievements, friends list, friend code and block list, your place in other players' friends lists, the game invites you sent or received, and your tournament entries, drawings, votes, results and rewards. It also takes you out of games in progress and removes your moves from their live data. If you're offline, the deletion finishes the next time the app connects. What remains: reports you filed, kept for moderation as described above, and games you already finished, which their other players can still see until they are deleted 30 days after they ended. If you no longer have the app, e-mail <a href="mailto:privacy@blinddraw.ink">privacy@blinddraw.ink</a>. The steps are also on <a href="/privacy/delete-account/">Delete your online data</a>.</p>
+
+        <h2 id="apple-tv">Apple TV and Play on TV</h2>
+        <p><strong>No account, ads or analytics.</strong> The Apple TV app contains no advertising, analytics, attribution, crash-reporting or tracking SDKs, and it does not send your drawings or game data to Invisible Ink. The Analytics, Advertising, Consent and Notifications sections below do not apply to it.</p>
+        <p><strong>Stored on the Apple TV.</strong> Drawings you choose to save to the Artwork gallery, optional player profiles (a nickname, an avatar, local stats and championship history), challenge scores, recent games and settings are stored only on that Apple TV. Anyone who uses the Apple TV can see them. You can delete artwork in the Artwork gallery and profiles in Player profiles, or delete the app; tvOS may also remove this data when the Apple TV needs space. None of it is synced to iCloud or to another device.</p>
+        <p><strong>Phone Party (Play on TV).</strong> When iPhones join a Phone Party, the Invisible Ink iPhone app and the Apple TV exchange the player names, drawings (as pen strokes), secret words, guesses and game state for that game directly over your local network. They find each other with Bonjour and connect with TLS encryption keyed to the room's private pairing code, which the Apple TV shows as a code and a QR code. Nothing in a Phone Party is sent over the internet or to Invisible Ink's servers, and none of it is kept on the Apple TV after the room closes. On the iPhone, the link in the QR code is handled only by Play on TV: the room code, drawings and guesses are not passed to analytics or attribution services.</p>
+        <p><strong>Apple services on Apple TV.</strong> Purchases and restores go through Apple's StoreKit. If you are signed in to iCloud, the Apple TV app reads your Invisible Ink Premium status and progress from iCloud but does not change them. If you are signed in to Game Center, the app shows your Game Center name and reports achievements to Game Center; Phone Party and challenge scores on Apple TV are not sent to Game Center leaderboards. If you share analytics with app developers in your Apple TV settings, Apple may share crash reports with us.</p>
 
         <h2>Analytics and diagnostics</h2>
         <p>When Analytics Collection is enabled in Settings, Invisible Ink uses Firebase Analytics, Firebase Crashlytics, and AppsFlyer to understand app usage, stability, acquisition, and feature performance. Depending on the service and your permissions, this may include:</p>
@@ -85,7 +91,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </ul>
 
         <h2>Retention and deletion</h2>
-        <p>Local drawings and preferences remain until you delete them or remove the app. Synced private iCloud data can be managed through your Apple account. Tournament records remain in the public CloudKit database as needed to operate and preserve tournament results, leaderboards, voting, and rewards. You may request access to or deletion of your tournament submission data by contacting <a href="mailto:privacy@blinddraw.ink">privacy@blinddraw.ink</a>.</p>
+        <p>Local drawings and preferences remain until you delete them or remove the app. On Apple TV, this includes the Artwork gallery and player profiles described in <a href="#apple-tv">Apple TV and Play on TV</a>. Synced private iCloud data can be managed through your Apple account. Tournament records remain in the public CloudKit database as needed to operate and preserve tournament results, leaderboards, voting, and rewards. You may request access to or deletion of your tournament submission data by contacting <a href="mailto:privacy@blinddraw.ink">privacy@blinddraw.ink</a>.</p>
         <p>Service providers retain analytics, advertising, and diagnostic data under their own retention settings and policies. Because no Invisible Ink account is required, deleting the app removes locally stored app data but does not automatically erase tournament records, online play data or data already processed by Apple, Google or another service provider. To delete your online play data on Android or the web, use Settings &rsaquo; Online &rsaquo; Delete My Online Data, or follow <a href="/privacy/delete-account/">Delete your online data</a>.</p>
 
         <h2>Children</h2>
