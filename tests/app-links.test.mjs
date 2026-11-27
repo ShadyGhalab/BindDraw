@@ -23,6 +23,13 @@ test('Android association has the correct package, relation and valid signing fi
   assert.equal(association[0].target.package_name, 'com.tendonlife.invisibleink');
   const fingerprints = association[0].target.sha256_cert_fingerprints;
   assert.ok(fingerprints.length >= 2);
+  // Play signs with a v3.0 signer (Android 16 and below) and a v3.2 hybrid (Android 17+), and sideloaded builds carry
+  // the EAS upload key: every one must be listed or App Links don't verify on those phones.
+  for (const required of [
+    '03:BC:41:34:94:C1:F1:F6:2B:0C:1E:26:65:6A:99:FF:66:BB:53:6C:B4:ED:E8:8C:3E:B1:E5:07:D2:71:25:76',
+    'D5:33:9E:F9:BD:59:85:98:B8:CF:95:6F:C5:D8:C0:4D:80:FC:CD:B4:39:C2:44:62:B6:86:86:2C:C3:D0:16:DC',
+    'FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C',
+  ]) assert.ok(fingerprints.includes(required), required);
   assert.equal(new Set(fingerprints).size, fingerprints.length);
   for (const fingerprint of fingerprints) assert.match(fingerprint, /^(?:[0-9A-F]{2}:){31}[0-9A-F]{2}$/);
 });
