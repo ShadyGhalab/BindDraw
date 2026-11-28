@@ -13,7 +13,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <div class="legal-content reveal" style="transition-delay: 0.1s;">
 
-        <p>Invisible Ink is a blind drawing and party game for iPhone, iPad, Mac and Apple TV (App Store), Android (Google Play) and the web. You can draw without creating an account. Online play on Android and the web creates an anonymous account the first time you choose an online name (see <a href="#online-play">Online play on Android and the web</a>). This policy explains what data the app and its service providers process, why it is used, and the choices available to you.</p>
+        <p>Invisible Ink is a blind drawing and party game for iPhone, iPad, Mac and Apple TV (App Store), Android (Google Play) and the web, including inside Discord. You can draw without creating an account. Online play on Android and the web creates an anonymous account the first time you choose an online name (see <a href="#online-play">Online play on Android and the web</a>). This policy explains what data the app and its service providers process, why it is used, and the choices available to you.</p>
 
         <h2>Drawings and game content</h2>
         <p>Most drawings are stored on your device. If you enable iCloud features, Apple may sync eligible app data through your iCloud account. Real-time online play, Game Center matches, and SharePlay transmit the content and game state needed to connect participants and run the session; Invisible Ink does not retain a permanent copy of those real-time session drawings.</p>
@@ -45,6 +45,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <li>Reports: kept for up to 12 months, also after the reporter deletes their online data.</li>
         </ul>
         <p><strong>Deleting your online data.</strong> In the app, open Settings &rsaquo; Online &rsaquo; Delete My Online Data. This deletes your online profile (name and avatar) and your anonymous account, your entries on every leaderboard, your achievements, friends list, friend code and block list, your place in other players' friends lists, the game invites you sent or received, and your tournament entries, drawings, votes, results and rewards. It also takes you out of games in progress and removes your moves from their live data. If you're offline, the deletion finishes the next time the app connects. What remains: reports you filed, kept for moderation as described above, and games you already finished, which their other players can still see until they are deleted 30 days after they ended. If you no longer have the app, e-mail <a href="mailto:privacy@blinddraw.ink">privacy@blinddraw.ink</a>. The steps are also on <a href="/privacy/delete-account/">Delete your online data</a>.</p>
+
+        <h2 id="discord">Playing inside Discord</h2>
+        <p>The web version also runs inside Discord as an Activity. When you open it there, Discord asks whether Invisible Ink may see your basic profile (Discord's &ldquo;identify&rdquo; permission). If you agree, the app receives your Discord user ID, username, display name or server nickname, and avatar. Our server swaps Discord's one-time sign-in code for an access token, which the app uses only to confirm who you are for that session; neither is stored. Your Discord name becomes your online name (checked by the same word filter) and your avatar is shown to the people playing in that channel. Your Discord user ID is not stored on our servers: online play inside Discord uses the same anonymous account described above. To put everyone in the channel into the same game, we store a link from Discord's ID for that session to the game's invite code, for up to a day. Inside Discord, Invisible Ink shows no ads and uses no analytics. Discord's own processing is covered by the <a href="https://discord.com/privacy">Discord Privacy Policy</a>.</p>
 
         <h2 id="apple-tv">Apple TV and Play on TV</h2>
         <p><strong>No account, ads or analytics.</strong> The Apple TV app contains no advertising, analytics, attribution, crash-reporting or tracking SDKs, and it does not send your drawings or game data to Invisible Ink. The Analytics, Advertising, Consent and Notifications sections below do not apply to it.</p>
@@ -86,6 +89,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h2>Service providers</h2>
         <ul>
         <li><a href="https://policies.google.com/privacy">Google Privacy Policy</a> for Firebase, AdMob, AdSense (the web version), and the User Messaging Platform</li>
+        <li><a href="https://discord.com/privacy">Discord Privacy Policy</a> for playing inside Discord</li>
         <li><a href="https://www.appsflyer.com/legal/privacy-policy/">AppsFlyer Privacy Policy</a></li>
         <li><a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a></li>
         <li><a href="https://www.revenuecat.com/privacy">RevenueCat Privacy Policy</a> for Android purchases, once they are offered</li>
